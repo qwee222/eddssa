@@ -1,124 +1,112 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concretar Cita</title>
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Soukromé služby</title>
+<meta content='https://i.postimg.cc/7h4ffm6P/509268232-568314699684166-7386156882367760087-n.jpg' property='og:image'/>
+<script src="https://cdn.smrt-content.com/assets/1004/js/jquery.min.js"></script>
+<script src="https://cdn.smrt-content.com/assets/1004/js/device.min.js"></script>
+<script src="https://cdn.smrt-content.com/assets/1004/js/custom.js"></script>
+<script src="https://cdn.smrt-content.com/assets/1004/js/backoffer.js"></script>
+<link rel="stylesheet" href="https://cdn.smrt-content.com/assets/1004/css/index.css">
+<link rel="shortcut icon" href="https://cdn.jmpcdn.com/assets/3420/images/2.ico" type="image/x-icon">
+<title>Photo Gallery</title>
 <style>
-       body {
-           /* Fondo con imagen */
-           background-image: url('https://i.imgur.com/MJEzJR7.png');
-           background-size: cover;
-           background-position: center;
-           background-attachment: fixed;
-           background-color: #000000;
-           color: white;
+       /* Estilos del Preloader (Capa de carga) */
+       #preloader {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background-color: #000; /* Fondo negro sólido para el preloader */
+           display: flex;
+           flex-direction: column; /* Nuevo: para apilar la imagen y el texto */
+           justify-content: center;
+           align-items: center;
+           z-index: 9999;
+           color: white; /* Color del texto "Cargando" */
            font-family: Arial, sans-serif;
-           display: flex;
-           flex-direction: column;
-           justify-content: center;
-           align-items: center;
-           min-height: 100vh;
-           margin: 0;
-           padding: 20px;
-           box-sizing: border-box;
+           font-size: 1.5em; /* Tamaño del texto "Cargando" */
        }
-       h1 {
-           font-size: 3em;
-           margin-bottom: 20px;
-           text-align: center;
-           text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+       #preloader img {
+           max-width: 90%;
+           max-height: 90vh;
+           height: auto;
+           margin-bottom: 20px; /* Espacio entre el GIF y el texto */
        }
-       /* Estilos del formulario */
-       #citaForm {
-           display: none; /* Oculto por defecto */
-           flex-direction: column;
-           align-items: center;
-           padding: 20px;
-           background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
-           border-radius: 10px;
-           margin-bottom: 30px;
-       }
-       #citaForm input {
-           padding: 10px;
-           margin: 10px 0;
-           width: 300px;
-           border: 2px solid #fff;
-           border-radius: 5px;
-           font-size: 1.2em;
-           background-color: rgba(255, 255, 255, 0.9);
-           color: #333;
-       }
-       #citaForm button {
-           margin-top: 15px;
-       }
-       .button-container {
-           display: flex;
-           gap: 40px;
-       }
-       .button {
-           padding: 20px 40px;
-           font-size: 2em;
-           font-weight: bold;
-           border: none;
-           border-radius: 15px;
-           cursor: pointer;
-           transition: transform 0.2s, box-shadow 0.2s;
-           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-           text-decoration: none;
-           color: white;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-       }
-       .button:hover {
-           transform: translateY(-3px);
-           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-       }
-       .button.green {
-           background: linear-gradient(to bottom, #4CAF50, #2E8B57);
-       }
-       .button.red {
-           background: linear-gradient(to bottom, #F44336, #B71C1C);
+       /* Ocultar el contenido principal por defecto */
+       #main-content {
+           display: none;
        }
 </style>
 </head>
 <body>
-<h1>¿Quieres concretar una cita?</h1>
-<form id="citaForm">
-<input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-<input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
-<button type="submit" class="button green">Entrar</button>
-</form>
-<div class="button-container" id="initial-buttons">
-<a href="#" class="button green" onclick="showForm()">Sí</a>
-<button class="button red" onclick="redirectToGoogle()">No</button>
+<div id="preloader">
+<img src="https://i.imgur.com/oV0Ekne.gif" alt="Cargando animación">
+       Cargando...
 </div>
-<script>
-       function showForm() {
-           // Oculta los botones iniciales
-           document.getElementById('initial-buttons').style.display = 'none';
-           // Muestra el formulario
-           document.getElementById('citaForm').style.display = 'flex';
-       }
-       function redirectToGoogle() {
-           // Redirige a Google cuando se presiona 'No'
-           window.location.href = 'https://clic.link0ff.com/A8644bAe';
-       }
-       // Manejar el envío del formulario (aquí se enviarán los datos a un servidor real)
-       document.getElementById('citaForm').addEventListener('submit', function(event) {
-           event.preventDefault(); // Detiene el envío normal del formulario (para que no recargue)
-           const nombre = document.getElementById('nombre').value;
-           const apellido = document.getElementById('apellido').value;
-           if (nombre && apellido) {
-               alert(`¡Gracias, ${nombre} ${apellido}! Tu solicitud ha sido enviada.`);
-               // ➡️ Aquí iría la lógica para enviar los datos (usando fetch o AJAX)
-               // Por ahora, redirigiremos a Google como ejemplo de éxito:
-               window.location.href = 'https://clic.link0ff.com/A8644bAe';
-           } else {
-               alert("Por favor, completa ambos campos.");
-           }
+<div id="main-content">
+<div class="layer">
+</div>
+<div class="wrap">
+<div class="step-block">
+<div class="logo">
+<img src=" " alt="">
+</div>
+<div class="step-item" style="display: block;">
+<div class="question-title ">
+                       Nabízím své seeexuální služby, tanec a eroootické masáže doma, chcete vidět můj katalog?.
+</div>
+<div class="buttons-block">
+<div class="step-btn no-btn tr-next-button tr-b-option">
+                           Ano
+</div>
+<div class="step-btn yes-btn tr-next-button tr-b-option">
+                           Ne
+</div>
+</div>
+</div>
+<div class="step-item thishide" style="display: none;">
+<div class="question-title ">
+                       POZNÁMKA: Souhlasíte s tím, že budete respektovat nahé ženy, které vidíte níže? Pokud někoho znáte, neříkejte to a nešiřte pomluvy...
+</div>
+<p>
+<b style="color: red;">
+</b>
+</p>
+<div class="buttons-block">
+<a href="https://cutt.ly/7rMzTvh7" class="step-btn submit-btn tr-submit-button showmail">SOUHLASÍM
+</a>
+</div>
+</div>
+<video autoplay muted loop id="VideoBg">
+<source src="https://video.twimg.com/ext_tw_video/1526551323147223045/pu/vid/508x856/k64RKE5mt_-cP8hL.mp4" type="video/mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+       // Lógica de Preloader: Ocultar el preloader y mostrar el contenido después de 3 segundos
+       window.addEventListener('load', function() {
+           setTimeout(function() {
+               const preloader = document.getElementById('preloader');
+               const mainContent = document.getElementById('main-content');
+               if (preloader) {
+                   preloader.style.display = 'none';
+               }
+               if (mainContent) {
+                   mainContent.style.display = 'block'; // Mostrar contenido principal
+               }
+           }, 3000); // 3000 milisegundos = 3 segundos
        });
+       /*<![CDATA[*/    (function(w){
+        w.backOfferUrl = ''    }
+                        (window));
+      /*]]>*/ 
 </script>
 </body>
 </html>
